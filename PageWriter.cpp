@@ -31,7 +31,7 @@ const int PageWriter::pingWriteInterval = 3;
 const int PageWriter::cacheSize = 10*1e6;
 
 const char* const _id =
-		"$Id: //TPU-4XXX-Stream/2.13/Recorder/PageWriter.cpp#2 $";
+		"$Id: //TPU-4XXX-Stream/2.13/Recorder/PageWriter.cpp#3 $";
 
 //-------------------------------------------------------------------------------------
 // PageWriter CTOR
@@ -119,8 +119,10 @@ float PageWriter::getDiskUsedPercent(void)
 
 	const float usage = (float)fs.f_bavail / (float)fs.f_blocks;
 
+	const float usagePercent = 100.0f - (usage * 100.0f);
+
 	// return 99% if over 19/20ths used or % used
-	return (usage > .95f) ? 99.0f : (100.0f -(usage * 100.0f));
+	return (usagePercent > .95f) ? 99.0f : usagePercent;
 }
 //-------------------------------------------------------------------------------------
 // PageWriter::getFramingMode()

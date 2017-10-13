@@ -19,7 +19,7 @@
 
 #include "Recorder.h"
 
-const char* const _id = "$Id: //TPU-4XXX-Stream/2.13/Recorder/main.cpp#1 $";
+const char* const _id = "$Id: //TPU-4XXX-Stream/2.13/Recorder/main.cpp#3 $";
 
 
 
@@ -160,7 +160,7 @@ static void usage(const std::string& name)
 		<< "[-h --host hostname]"
 		<< "[-n --noblocking | -b --blocking]" 
 		<< std::endl;
-	std::cerr << "\tdefault: -h 192.168.0.81 --blocking" << std::endl;
+	std::cerr << "\tdefault: -h 127.0.0.1 --blocking" << std::endl;
 }
 
 // the main()
@@ -173,7 +173,8 @@ int main(const int ac, const char* const av[])
 
 	ops.exceptions(std::ios::failbit | std::ios::eofbit);
 
-	std::string hostname("192.168.0.81");
+	// std::string hostname("192.168.0.81");
+	std::string hostname("127.0.0.1");
 	bool useBlocking = true;
 	bool useNoBlocking = !useBlocking;
 
